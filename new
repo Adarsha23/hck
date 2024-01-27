@@ -1,0 +1,424 @@
+{
+  "status": "SUCCESS",
+  "message": "Geocoding address: 612 Jasmine Road",
+  "data": {
+    "items": [
+      {
+        "title": "612 Jasmine Rd, Casselberry, FL 32707-5041, United States",
+        "id": "here:af:streetsection:iSb4198NLHdqgii4qBdQID:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Casselberry, FL 32707-5041, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "FL",
+          "state": "Florida",
+          "county": "Seminole",
+          "city": "Casselberry",
+          "street": "Jasmine Rd",
+          "postalCode": "32707-5041",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 28.65405,
+          "lng": -81.32246
+        },
+        "access": [
+          {
+            "lat": 28.65418,
+            "lng": -81.32246
+          }
+        ],
+        "mapView": {
+          "west": -81.32348,
+          "south": 28.65315,
+          "east": -81.32144,
+          "north": 28.65495
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 Jasmine Rd, Fuquay-Varina, NC 27526-6559, United States",
+        "id": "here:af:streetsection:u6rI38P8WoHBUdoDnbYVSA:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Fuquay-Varina, NC 27526-6559, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "NC",
+          "state": "North Carolina",
+          "county": "Harnett",
+          "city": "Fuquay-Varina",
+          "street": "Jasmine Rd",
+          "postalCode": "27526-6559",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 35.49722,
+          "lng": -78.93805
+        },
+        "access": [
+          {
+            "lat": 35.49715,
+            "lng": -78.93791
+          }
+        ],
+        "mapView": {
+          "west": -78.93915,
+          "south": 35.49632,
+          "east": -78.93695,
+          "north": 35.49812
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 Jasmine Rd, Altamonte Springs, FL 32701-4807, United States",
+        "id": "here:af:streetsection:lwILLxGLmv91655mqEItlC:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Altamonte Springs, FL 32701-4807, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "FL",
+          "state": "Florida",
+          "county": "Seminole",
+          "city": "Altamonte Springs",
+          "street": "Jasmine Rd",
+          "postalCode": "32701-4807",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 28.6629,
+          "lng": -81.37038
+        },
+        "access": [
+          {
+            "lat": 28.66303,
+            "lng": -81.37038
+          }
+        ],
+        "mapView": {
+          "west": -81.3714,
+          "south": 28.662,
+          "east": -81.36936,
+          "north": 28.6638
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 Jasmine Rd, Clever, MO 65631, United States",
+        "id": "here:af:streetsection:CXpb9FHC.5qFmzEx7S.tAB:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Clever, MO 65631, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "MO",
+          "state": "Missouri",
+          "county": "Stone",
+          "city": "Clever",
+          "street": "Jasmine Rd",
+          "postalCode": "65631",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 36.99335,
+          "lng": -93.43167
+        },
+        "access": [
+          {
+            "lat": 36.99349,
+            "lng": -93.43167
+          }
+        ],
+        "mapView": {
+          "west": -93.4328,
+          "south": 36.99245,
+          "east": -93.43054,
+          "north": 36.99425
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 Jasmine Rd, Crowley, LA 70526-8132, United States",
+        "id": "here:af:streetsection:uzpapCVxE.i0XsFJCyMKWA:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Crowley, LA 70526-8132, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "LA",
+          "state": "Louisiana",
+          "county": "Acadia",
+          "city": "Crowley",
+          "street": "Jasmine Rd",
+          "postalCode": "70526-8132",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 30.23541,
+          "lng": -92.44686
+        },
+        "access": [
+          {
+            "lat": 30.23555,
+            "lng": -92.44686
+          }
+        ],
+        "mapView": {
+          "west": -92.4479,
+          "south": 30.23451,
+          "east": -92.44582,
+          "north": 30.23631
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 State Highway 173, Billings, MO 65610, United States",
+        "id": "here:af:streetsection:SbuC8JnVWyD80e9pLL1KLB:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 State Highway 173, Billings, MO 65610, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "MO",
+          "state": "Missouri",
+          "county": "Stone",
+          "city": "Billings",
+          "street": "State Highway 173",
+          "postalCode": "65610",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 36.99418,
+          "lng": -93.51643
+        },
+        "access": [
+          {
+            "lat": 36.99432,
+            "lng": -93.51642
+          }
+        ],
+        "mapView": {
+          "west": -93.51756,
+          "south": 36.99328,
+          "east": -93.5153,
+          "north": 36.99508
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 Jasmine Rd, Mission, TX 78572, United States",
+        "id": "here:af:streetsection:jaxYlHwyiYodsl97mScthD:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Mission, TX 78572, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "TX",
+          "state": "Texas",
+          "county": "Hidalgo",
+          "city": "Mission",
+          "street": "Jasmine Rd",
+          "postalCode": "78572",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 26.20108,
+          "lng": -98.3054
+        },
+        "access": [
+          {
+            "lat": 26.20121,
+            "lng": -98.30537
+          }
+        ],
+        "mapView": {
+          "west": -98.3064,
+          "south": 26.20018,
+          "east": -98.3044,
+          "north": 26.20198
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      },
+      {
+        "title": "612 Jasmine Rd, Sandy Level, VA 24161, United States",
+        "id": "here:af:streetsection:fGzSaG3JAAM3TgchFuwpQB:EAIaAzYxMg",
+        "resultType": "houseNumber",
+        "houseNumberType": "interpolated",
+        "address": {
+          "label": "612 Jasmine Rd, Sandy Level, VA 24161, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "VA",
+          "state": "Virginia",
+          "county": "Pittsylvania",
+          "city": "Sandy Level",
+          "street": "Jasmine Rd",
+          "postalCode": "24161",
+          "houseNumber": "612"
+        },
+        "position": {
+          "lat": 36.98284,
+          "lng": -79.59116
+        },
+        "access": [
+          {
+            "lat": 36.98291,
+            "lng": -79.59131
+          }
+        ],
+        "mapView": {
+          "west": -79.59229,
+          "south": 36.98194,
+          "east": -79.59003,
+          "north": 36.98374
+        },
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "streets": [
+              1.0
+            ],
+            "houseNumber": 1.0
+          }
+        }
+      }
+    ]
+  }
+}
+
+
+Avishekh Shrestha
+:spiral_calendar_pad:  3 days ago
+Q: Riverside Park, Miami
+
+
+Aakrit Subedi
+:spiral_calendar_pad:  3 days ago
+
+{
+  "status": "SUCCESS",
+  "message": "Geocoding address: Riverside Park, Miami",
+  "data": {
+    "items": [
+      {
+        "title": "Riverside Apartments",
+        "id": "here:pds:place:840dhwfw-ff652c06805f4425b0712827269a1e14",
+        "resultType": "place",
+        "address": {
+          "label": "Riverside Apartments, 950 SW 1st St, Miami, FL 33130-1112, United States",
+          "countryCode": "USA",
+          "countryName": "United States",
+          "stateCode": "FL",
+          "state": "Florida",
+          "county": "Miami-Dade",
+          "city": "Miami",
+          "district": "East Little Havana",
+          "street": "SW 1st St",
+          "postalCode": "33130-1112",
+          "houseNumber": "950"
+        },
+        "position": {
+          "lat": 25.77225,
+          "lng": -80.21004
+        },
+        "access": [
+          {
+            "lat": 25.77266,
+            "lng": -80.21006
+          }
+        ],
+        "categories": [
+          {
+            "id": "550-5510-0202",
+            "name": "Park-Recreation Area",
+            "primary": true
+          },
+          {
+            "id": "700-7200-0324",
+            "name": "Apartment/Flat Rental"
+          },
+          {
+            "id": "700-7200-0344",
+            "name": "Property Management"
+          },
+          {
+            "id": "900-9300-0221",
+            "name": "Residential Area/Building"
+          }
+        ],
+        "scoring": {
+          "queryScore": 1.0,
+          "fieldScore": {
+            "city": 1.0,
+            "placeName": 1.0
+          }
+        }
+      }
+    ]
+  }
+}   
