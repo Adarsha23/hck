@@ -1,0 +1,581 @@
+FYP Proposal – Smart Pet
+Feeder
+
+Student ID: 2408599
+Name: Adarsha Prasai
+Section: L6CG8
+Supervisor: Sangay Lama
+Reader: Subash Bista
+
+Abstract
+This project proposes a low-cost, IoT-enabled smart pet feeder that combines an
+ESP32-based hardware unit with a secure, data-driven web application. The device
+performs closed-loop portion control using an HX711 load-cell interface, dispenses
+food via a servo-driven mechanism, monitors water level with a float sensor, and
+supports optional audio prompts through a DFPlayer Mini with an 8 Ω 1 W speaker.
+The web application, built with React and a cloud-hosted backend, provides
+authenticated access to manual feeding, pause/resume control, live video monitoring,
+event notifications, pet profile management, and long-term feeding analytics. The aim
+is to deliver a defensible prototype that goes beyond simple automation by introducing
+a robust control plane, auditable logs, remote assurance, and human-in-the-loop
+safety capabilities that cannot be credibly achieved by a headless device alone.
+(PetSafe, 2025) (WOPet, 2021) (Systems, 2021) (Adnan Shah, Tajuddin, Darzi, &
+Malgi, 2023)
+
+Table of Contents
+Abstract ................................................................................................................ 2
+1.
+
+Introduction ................................................................................................... 1
+
+2.
+
+Problem Statement ........................................................................................ 2
+
+3.
+
+Aims .............................................................................................................. 2
+3.1.
+
+4.
+
+Sub-Aims: ......................................................................................................... 3
+
+Objectives...................................................................................................... 4
+4.1.
+
+System Development Objectives ........................................................................ 4
+
+4.2.
+
+Testing and Evaluation Objectives ...................................................................... 4
+
+5.
+
+Scope and Delimitations ................................................................................. 5
+
+6.
+
+Related Systems ............................................................................................ 5
+
+7.
+
+Methodology .................................................................................................. 6
+
+8.
+
+Expected Outcomes ....................................................................................... 8
+
+9.
+
+Why the Web Application Is Essential .............................................................. 9
+
+10.
+
+Work Plan and Timeline (Nine Months) ....................................................... 10
+
+11.
+
+Resource Requirements ............................................................................ 11
+
+12.
+
+Risk Analysis and Mitigation ...................................................................... 12
+
+13.
+
+Evaluation Plan ......................................................................................... 13
+
+14.
+
+Future Scope ............................................................................................ 14
+
+15.
+
+References ............................................................................................... 15
+
+1
+
+1. Introduction
+Feeding a companion animal sounds simple until you try to make it reliable,
+measurable, and responsive to the realities of modern life. Owners travel, work late,
+and deal with changing routines. Pets have evolving dietary needs across life stages
+and health conditions. The naive approach, dumping some kibble at fixed times can
+turn into underfeeding, overfeeding, or inconsistent patterns that a caregiver only
+notices once issues arise. Commercial feeders exist, but their design emphasizes
+fixed schedules and basic app triggers rather than transparent, verifiable monitoring
+integrated with the owner’s daily decisionmaking. In other words, the market has
+shown the appetite for convenience, but the gap lies in trust, control, and data
+continuity across contexts, caregivers, and devices. Systems that emphasize
+scheduling alone treat feeding as a oneway actuation problem; real pet care is a
+feedback problem that needs human oversight, measurement, and explainability.
+Using the ESP32 as the control unit provides Wi-Fi connectivity, enough compute for
+sensor fusion and motor control.. The web application complements the device by
+serving as a control plane with secure identity, permissions, and analytics. Together,
+they transform feeding from “press start and hope” into a continuous loop of sensing,
+deciding, acting, and verifying. The feeder dispenses based on target mass rather than
+crude time-based dispensing.
+(Systems, 2021) (PetSafe, 2025) (WOPet, 2021)
+
+2
+
+2. Problem Statement
+There’s a real need for a smart pet feeder that’s reliable, easy to use, and aligned with
+current market trends, combining precise portion control with a secure, cloudconnected interface. Owners should be able to check in, see logs, and stay in control
+even from afar. Most current products either focus only on the mechanics of dispensing
+or offer a basic app that doesn’t keep durable records or track events in a meaningful
+way. Market research shows a growing demand for smart feeders that support remote
+control and pet-care convenience (Company, 2025)Having a web interface as the main
+control hub isn’t just convenient, it’s essential. It lets multiple caregivers collaborate,
+keeps an auditable history, provides insights over time, and ensures the system still
+works smoothly even when things don’t go perfectly in the real world. (WOPet, 2021)
+(PetSafe, 2025) (Company, 2025)
+
+3. Aims
+The primary aim of this project is to design and implement a low-cost, IoT-enabled smart pet
+feeder that ensures precise, reliable, and accountable feeding through the integration of
+embedded hardware control and a secure, data-driven web application. The system seeks
+to move beyond fixed-time automation by establishing a closed-loop feedback model where
+each feeding event is measurable, verifiable, and traceable, thereby improving transparency,
+trust, and remote accessibility in pet care.
+
+3
+
+3.1. Sub-Aims:
+•
+
+To develop an ESP32-based embedded system capable of accurate food dispensing
+using calibrated load-cell feedback and real-time weight monitoring.
+
+•
+
+To build a companion web application that provides authenticated control, real-time event
+visualization, and long-term feeding analytics.
+
+•
+
+To implement a resilient communication architecture allowing both online and offline
+operation with synchronized logs and error handling.
+
+•
+
+To ensure data integrity, safety, and accountability through secure APIs, event auditing,
+and human-in-the-loop confirmation mechanisms.
+
+•
+
+To evaluate the prototype’s reliability, measurement accuracy, and usability under
+realistic operating conditions.
+
+4
+
+4. Objectives
+4.1. System Development Objectives
+§
+
+Build an ESP32-based feeder that can measure and control the exact amount of
+food dispensed using a load cell and HX711 amplifier.
+
+§
+
+Use a servo motor to release food and a float sensor to monitor water levels.
+
+§
+
+Create a secure web application (using React and a cloud backend) that allows
+users to:
+•
+
+Log in safely and connect their feeder device
+
+•
+
+Feed their pet manually or pause feeding when needed
+
+•
+
+View feeding history, with time and portion size
+
+•
+
+Get notifications about feed completion, low food, low water, or connection
+issues
+
+•
+§
+
+Visualize the feeding pattern of their pets
+
+Make sure the feeder keeps working even if the internet goes down, and syncs
+data correctly once it reconnects.
+
+4.2. Testing and Evaluation Objectives
+§
+
+Test the accuracy of the feeder by comparing the target and actual food portions.
+
+§
+
+Check system reliability by simulating internet or power interruptions.
+
+§
+
+Collect user feedback on how easy the system is to use and how much trust it
+builds.
+
+§
+
+Compare how the web interface improves safety and monitoring compared to a
+fully offline feeder.
+
+(Systems, 2021)
+
+5
+
+5. Scope and Delimitations
+The system lets owners manually feed their pets from the web interface while
+keeping portion control precise using the load cell. Every feeding is logged with time
+and dispensed amount, and the system tracks food and water levels through
+weight. Owners get real-time notifications for feeding events or low levels. A pet
+profile stores basic details and a photo, and feeds can be paused or resumed to
+follow vet guidance or temporary fasting.
+Features like multi-pet support and fully automated scheduling are intentionally left
+out, as differentiating consumption between pets is tricky. Any scheduling logic might
+appear as an experimental or disabled module, but the core system emphasizes
+control, accuracy, and oversight via the web.
+(PetSafe, 2025) (WOPet, 2021)
+
+6. Related Systems
+Previous research shows that IoT-based feeders can automate feeding using sensors and
+actuators, but they often lack user-facing analytics or strong authentication. For example,
+Khan et al. demonstrated a system combining microcontrollers with network connectivity,
+proving the concept works, but left questions around robust logging, identity
+management, and long-term web-scale maintenance [Khan et al., 2020].
+More recent work by (Arceo, Flores, & Mancilla, 2024)describes a smart feeder combining
+IoT hardware (weight sensors, camera, ultrasonic sensors) with deep learning for pet
+recognition and precise portion dispensing. While this system demonstrates effective portion
+control and automatic pet identification, it still focuses on embedded intelligence and does
+not integrate a web application for audit logging, multi-user management, or human-in-theloop safety. Including this highlights the gap your project addresses by combining robust
+web-based monitoring and control with the hardware.
+On the commercial side, products like PetSafe, Smart Feed, and offerings from WOPet
+show advanced hardware and strong consumer demand, but they are usually closed
+systems, focused on retail polish rather than research flexibility or transparent data export
+
+6
+The current state of the art gives us mechanical dispensing, app-triggered actions, and basic
+alerts, yet it doesn’t fully integrate the web application as a core part of safety,
+measurement, and accountability. In particular, little has been written about balancing
+device autonomy with cloud control, especially when connectivity is unreliable or multiple
+caregivers are involved.
+This project fills that gap by formalizing the interface between device and cloud,
+implementing “intent → actuation → verification” loops, and showing how authenticated
+events can serve as a trusted record of the pet’s care history.
+(Arceo, Flores, & Mancilla, 2024) (PetSafe, 2025) (WOPet, 2021)
+
+7. Methodology
+
+The system is built around an ESP32, chosen for its Wi-Fi, GPIO availability, and
+reliable tooling. It controls a servo to dispense kibble, reads mass through a load cell,
+and plays audio via a DFPlayer Mini. Feeding is a closed-loop process: the scale is
+tared, kibble is dispensed while mass is continuously monitored, and dispensing stops
+once the target is reached. HX711 readings are smoothed using moving average or
+median filters, and calibration relies on reference weights. Every feed logs the
+
+7
+requested and actual mass, dispense time, and any anomalies, forming a detailed
+event log.
+The networking design is resilient: the ESP32 can complete feeds offline, while the
+web server issues commands with idempotent tokens over REST or MQTT. Offline
+requests queue and execute once the device reconnects, ensuring durable, auditable
+actions.
+The React web app manages authentication, device association, event storage, and
+notifications. Users can manually trigger feeds, track progress, and explore detailed
+event timelines. Pet profiles store name, breed, age, weight, and height. Notifications
+cover feed completion, low food, and low water.
+Security is robust: TLS, signed tokens, replay protection, and feed logging create a
+trustworthy audit trail.
+Calibration is guided: the web app collects raw ADC counts, calculates slope/offset,
+stores versioned parameters, and pushes reference data to the device. Persistent drift
+triggers recalibration, ensuring accurate, reliable mass measurements.
+(Adnan Shah, Tajuddin, Darzi, & Malgi, 2023)
+
+8
+
+8. Expected Outcomes
+By the end of the project, the system should demonstrate that smart pet feeding can be done
+accurately, safely, and transparently through a connected web platform. The feeder and web
+app will work together to show that pet care can be monitored and controlled from anywhere
+with trust and consistency.
+•
+
+Accurate Feeding:
+The feeder will dispense food portions that closely match the target weight, with
+minimal error after calibration.
+
+•
+
+Reliable Operation:
+The system will keep functioning even if the internet goes down and will automatically
+update feeding data once reconnected.
+
+•
+
+User Control and Awareness:
+Users will be able to monitor, pause, or trigger feeds from the web interface, with clear
+logs and notifications showing exactly what happened and when.
+
+•
+
+Improved Trust and Safety:
+The combination of event logs and notifications will give users confidence that feeding
+is happening as expected, even when they are away.
+
+•
+
+Data and Insight:
+Feeding history will be stored in a structured form, making it possible to analyze longterm trends and support future features like portion recommendations.
+
+•
+
+Learning and Skill Development:
+The project will demonstrate practical skills in IoT integration, web development, data
+handling, and system security, key areas for full-stack and embedded system
+development.
+
+9
+
+9. Why the Web Application Is Essential
+The heart of the defense is this: the web application is the safety, accountability, and
+collaboration layer. A purely embedded schedule would dispense food, but it would not
+provide a durable record of who did what, when, and with what outcome. For example,
+if a veterinarian prescribes a temporary reduction in portions, the ability to pause
+remotely, see that the command was applied, and verify that subsequent feed attempts
+were blocked is essential. If the device jams, the log shows the partial dispense, the
+alert, and any remediation.
+Without the web, owners cannot compare their pet’s feeding patterns over time. Say
+you want to check your pet’s intake over the last three months versus the same period
+last year, without a web interface storing and visualizing historical data, this kind of
+analysis would be nearly impossible. Research supports this: according to
+Investigation into the aetiology of hypercalcaemia in a cohort of 44 cats, veterinarians
+can diagnose health problems significantly faster when they have detailed feeding
+pattern reports. (Knowles, et al., 2020)
+Without a backend, notifications cannot be reliably delivered or archived; without a UI,
+calibration and analytics are hidden behind serial commands that the average user will
+not run. The web layer transforms an opaque IoT gadget into an observable,
+accountable service, which is essential for adoption and quality care.
+From an academic perspective, the web app also multiplies learning opportunities:
+implementing secure authentication, modelling device state in a database, designing
+APIs with idempotency, handling eventual consistency, and building data
+visualizations that interpret sensor readings in human terms. These are core,
+transferable skills in modern software engineering, which a strong FYP should surface.
+This project is therefore not “a feeder plus a pretty page”; it is a controlled cyberphysical system whose correctness is amplified and made defensible by the web layer.
+Commercial feeders demonstrate user demand for remote control, and prior academic
+work shows device feasibility; this project integrates these strands while framing the
+website as the custodian of safety, accountability, and actionable insight, not an
+optional accessory. (WOPet, 2021) (PetSafe, 2025) (Adnan Shah, Tajuddin, Darzi, &
+Malgi, 2023) (E. Bray, Zheng , Tolbert, & Kaeberlein, 2022) (Knowles, Marshall, &
+Girling, 2020)
+
+10
+
+10. Work Plan and Timeline (Nine Months)
+
+The project will be executed over nine months, starting with four weeks of research and
+planning to study existing systems, select suitable hardware, and define the project workflow.
+The next four weeks will focus on system design, including hardware schematics, sensor
+placement, and web application structure. Hardware setup will take six weeks, assembling
+and calibrating the ESP32, load cell, servo mechanism, DFPlayer, camera module, and float
+sensor. Web application development will span ten weeks, covering frontend, backend,
+database, authentication, and core features like manual feed control, event logging,
+notifications, and pet profiles. Integration of the hardware with the web application will occur
+over four weeks, ensuring real-time communication and control. Testing and debugging will
+take another four weeks to verify accuracy, reliability, and usability. Finally, four weeks will
+be dedicated to documentation and the final report, including diagrams, user manuals, and
+summarizing project outcomes and future scope.
+
+11
+
+11. Resource Requirements
+• Hardware
+•
+
+ESP32 development board
+
+•
+
+Hobby servo (suitable for dispensing gate load)
+
+•
+
+Load cell with appropriate capacity
+
+•
+
+HX711 amplifier
+
+•
+
+Float switch (water level awareness)
+
+•
+
+DFPlayer Mini + 8 Ω 1 W speaker (audio prompts)
+
+•
+
+Camera module (ESP32-CAM or alternative)
+
+• Software
+•
+
+Arduino IDE or ESP-IDF (firmware development)
+
+•
+
+React frontend
+
+•
+
+Cloud-hosted backend with database for users, devices, events
+
+•
+
+Hosting via a platform-as-a-service provider
+
+12
+
+12. Risk Analysis and Mitigation
+•
+
+Hardware Risks
+Ø Load cell drift: Implement tare routines and warm-up cycles to maintain accurate
+weight readings.
+Ø Servo stalls: Use a higher-torque servo than minimally required to prevent failures.
+Ø Kibble granularity: Design the chute to reduce bridging and implement a two-phase
+dispensing mechanism.
+
+•
+
+Sensing Risks
+Ø Include calibration and warm-up routines in firmware.
+Ø The user interface prompts periodic recalibration using reference weights.
+
+•
+
+Network Risks
+Ø Provide a minimal offline mode for manual feed commands.
+Ø Ensure the device reconciles its state with the server once connectivity is restored.
+
+•
+
+Security Risks
+Ø Use short-lived authentication tokens.
+Ø Enforce strict device-to-user association rules.
+
+•
+
+Timeline Risks
+Ø Prioritize the core system first: manual feeding, closed-loop portion measurement,
+and event logging.
+Ø Treat camera integration and advanced notifications as secondary enhancements.
+
+(Systems, 2021) (Adnan Shah, Tajuddin, Darzi, & Malgi, 2023)
+
+13
+
+13. Evaluation Plan
+The project will be evaluated through a combination of functional testing, performance
+measurement, and user feedback to ensure that the smart pet feeder performs reliably
+under real-world conditions.
+•
+
+Functional Testing:
+Ø Verify that the feeder dispenses the correct food amount per schedule and on manual
+command.
+Ø Confirm the sensors and communication modules operate without interruption.
+Ø Ensure the system logs every feeding event accurately and displays it in the web
+interface.
+
+•
+
+Performance Evaluation:
+Ø Measure accuracy of food portioning (acceptable deviation ≤ ±5 grams).
+Ø Test response time between user command and device action (< 5 seconds).
+Ø Observe system stability during network interruptions and reconnection events.
+
+•
+
+User Evaluation:
+Ø Conduct usability testing with at least 3 users to assess clarity of the interface, ease
+of operation, and overall satisfaction.
+Ø Collect qualitative feedback on trust, transparency, and perceived usefulness of
+remote monitoring.
+
+•
+
+Security and Reliability Assessment:
+Ø Test data encryption, authentication, and communication reliability between the web
+server and feeder.
+Ø Evaluate data recovery after temporary disconnection or power failure.
+
+14
+•
+
+Final Validation:
+Ø Compare real-world feeding accuracy, system reliability, and user satisfaction results
+against initial expected outcomes.
+
+14. Future Scope
+In the future, the server can generate recommendations based on consumption trends
+observable in the logs, offering evidence-based portion suggestions rather than blind
+schedules. Multi-pet support becomes tractable when paired with camera-based
+recognition that associates consumption with individuals, which, combined with perpet profiles, could transition the system from a generic feeder to a personalized
+nutrition assistant. Integrations with smart assistants are also possible. Over-the-air
+firmware updates could be initiated from the web interface so that security patches roll
+out safely. Data export and privacy controls would allow users to take their logs
+elsewhere or contribute anonymized data to research. All of these are aligned with the
+goal of making the web application a durable, ethical custodian of a pet’s feeding.
+
+15
+
+15. References
+•
+
+Adnan Shah, Tajuddin, S., Darzi, I. H., & Malgi, G. D. (2023). Pet Feeder using IoT.
+AnaPub Publications.
+
+•
+
+Arceo, C., Flores, R., & Mancilla, S. (2024). Design and Development of a Smart Pet
+Feeder with IoT and Deep Learning. 11th International Electronic Conference on Sensors
+and Applications (pp. 1-6). Basel: MDPI AG.
+
+•
+
+Company, T. B. (2025). Global Automatic And Smart Pet Feeder Market Report 2025.
+London: The Business Research Company.
+
+•
+
+E. Bray, E., Zheng , Z., Tolbert, M. ., & Kaeberlein, M. (2022). Once-daily feeding is
+associated with better health in companion dogs. Frontiers in Veterinary Science,
+1779-1790.
+
+•
+
+Knowles, E. J., Marshall, J. M., & Girling, S. J. (2020). Investigation into the aetiology of
+hypercalcaemia in a cohort of 44 cats. Veterinary Record, 354-354.
+
+•
+
+PetSafe. (2025). PetSafe Smart Feed. Retrieved from PetSafe: https://www.petsafe.com
+
+•
+
+Systems, E. (2021). ESP32 Technical Reference Manual. Espressif Systems.
+
+•
+
+WOPet. (2021). WOPet Smart Feeder. Retrieved from WOPet: https://wopet.com/
+
+
