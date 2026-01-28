@@ -1,0 +1,738 @@
+Literature Review – Smart Pet
+Feeder
+
+Student ID: 2408599
+Name: Adarsha Prasai
+Section: L6CG8
+Supervisor: Sangay Lama
+Reader: Subash Bista
+
+Table of Contents
+1.
+
+Introduction ....................................................................................................................... 1
+
+2.
+
+Literature Review ................................................................................................................ 2
+
+3.
+
+2.1.
+
+Design of Smart Pet Food Dispenser using Embedded System ........................................... 2
+
+•
+
+Results ............................................................................................................................ 2
+
+•
+
+Limitations ....................................................................................................................... 3
+
+2.2.
+
+Implementation of an IoT Based Pet Care System .............................................................. 3
+
+•
+
+Results ............................................................................................................................ 4
+
+•
+
+Limitations ....................................................................................................................... 4
+
+2.3.
+
+IoT and Cloud-based Automated Pet Care System ............................................................. 5
+
+•
+
+Results ............................................................................................................................ 5
+
+•
+
+Limitations ....................................................................................................................... 6
+
+2.4.
+
+Modular Pet Feeding Device ............................................................................................. 6
+
+•
+
+Results ............................................................................................................................ 6
+
+•
+
+Limitations ....................................................................................................................... 7
+
+2.5.
+
+Automatic Pet Feed System Applying IoT ........................................................................... 7
+
+•
+
+Results ............................................................................................................................ 8
+
+•
+
+Limitations ....................................................................................................................... 8
+
+2.6.
+
+IoT Based Automatic Pet Feeder ....................................................................................... 9
+
+•
+
+Results ............................................................................................................................ 9
+
+•
+
+Limitations ..................................................................................................................... 10
+
+2.7.
+
+Design and Development of a Smart Pet Feeder with IoT and Deep Learning ..................... 11
+
+•
+
+Results .......................................................................................................................... 11
+
+•
+
+Limitations ..................................................................................................................... 12
+
+2.8.
+
+Overall Gap Analysis ...................................................................................................... 12
+
+•
+
+Common Gaps: .............................................................................................................. 12
+
+Proposed System .............................................................................................................. 13
+3.1.
+
+Concept Overview ......................................................................................................... 13
+
+3.2.
+
+System Architecture and Module Interactions ................................................................. 13
+
+3.2.1.
+
+ESP32 Control Unit .................................................................................................... 13
+
+3.2.2.
+
+HX711 Load Cell Ampliﬁer ......................................................................................... 13
+
+3.2.3.
+
+Servo Motor Dispensing Module ................................................................................. 14
+
+3.2.4.
+
+IoT Communication and Cloud Integration .................................................................. 14
+
+3.2.5.
+
+Web Application and Multi-Caregiver Control.............................................................. 14
+
+3.2.6.
+
+ORline Synchronization and Analytics......................................................................... 14
+
+3.3.
+4.
+
+Security, Audit, and Human Oversight ............................................................................. 15
+
+Technology Overview ........................................................................................................ 15
+4.1.
+
+HX711 Load Cell Ampliﬁer ......................................................................................... 15
+
+4.2.
+
+Servo Motor............................................................................................................... 15
+
+4.3.
+
+ESP32 Microcontroller ............................................................................................... 15
+
+4.4.
+
+MQTT vs HTTP REST Communication .......................................................................... 16
+
+4.5.
+
+Cloud Integration ....................................................................................................... 16
+
+4.6.
+
+Web Application and Logging Mechanisms ...................................................................... 16
+
+4.7.
+
+IoT Security and Authentication .................................................................................. 16
+
+4.8.
+
+Analytics and Visualization ........................................................................................ 16
+
+5.
+
+Research Gap and Motivation ............................................................................................ 17
+
+6.
+
+Conclusion ....................................................................................................................... 18
+
+7.
+
+References ....................................................................................................................... 19
+
+1
+
+1. Introduction
+The Internet of Things (IoT) has enabled pervasive interconnectivity
+across devices, allowing automation to extend into domestic and
+companion-animal environments. Within the pet care ecosystem, smart
+feeders offer scheduling convenience, portion consistency, and remote
+control. However, despite commercial success, technical limitations
+persist in most systems. Existing feeders typically use time-based control
+or uncalibrated rotation, with minimal regard for actual dispensed weight.
+Consequently, feeding errors, overdispensing, and lack of supervision
+undermine reliability, especially during owner absence.
+Automation in pet care contributes not only to convenience but also to
+animal health, enabling consistent feeding patterns and mitigating human
+error. Yet the underlying technical challenge remains: translating
+mechanical actuation into verified nutritional outcomes. In open-loop
+feeders, servo motors dispense based on pre-timed durations rather than
+feedback from actual food weight.
+Security, auditability, and resilience are therefore essential qualities of
+next-generation smart feeders. From a system perspective, these
+features demand a robust embedded control loop, a synchronized cloud
+architecture, and a human-in-the-loop safety model. The proposed IoTEnabled Closed-Loop Smart Pet Feeder with Multi-Caregiver Web
+Application and Analytics aims to unify these dimensions. By combining
+precise load-cell-based control, secure cloud integration, and an offlinefirst design, it provides verifiable automation even in intermittent network
+environments.
+
+2
+
+2. Literature Review
+
+2.1. Design of Smart Pet Food Dispenser using Embedded
+System
+•
+
+Name of the paper: Design of Smart Pet Food Dispenser using
+
+Embedded System
+• Type of paper: Conference paper (IEEE Proceedings)
+• Pages: 1–6
+• Authors: E. Jain, S. Sharma, R. Agarwal, and N. K. Gupta
+• University: Symbiosis Institute of Technology, Pune, India
+• Relation: Introduces a microcontroller-based automatic pet feeder using
+Arduino and basic IoT integration; demonstrates open-loop control without
+verification forms baseline mechanical automation that my FYP expands
+into closed-loop accuracy with analytics.
+• Where found: IEEE Xplore
+(Jain, et al., 2023)
+• Results
+
+The prototype successfully dispensed food at user-defined intervals and
+was remotely triggerable through the Firebase-connected app. The
+authors reported correct motor actuation and stable Wi-Fi control within a
+local LAN range. However, they did not quantify weight accuracy or
+latency metrics. User tests were demonstrated qualitatively by showing
+dispensing at scheduled times. No numerical performance evaluation
+(such as portion error or throughput) was presented. Therefore, results
+remain proof-of-concept level rather than validated metrics.
+
+3
+• Limitations
+
+The system is open-loop: it does not verify the actual mass dispensed
+against the target. The Firebase link provides no security or audit trail, and
+the mobile interface lacks multi-user access control. Offline functionality
+is absent since the ESP8266 cannot queue commands without network.
+The design relies on real-time clock schedules hard-coded in firmware,
+making updates inflexible. No human-in-the-loop safety or notification
+logic exists, and feed errors cannot be detected autonomously.
+
+2.2. Implementation of an IoT Based Pet Care System
+• Name of the paper: Implementation of an IoT Based Pet Care System
+• Type of paper: Conference article (IEEE)
+• Authors: Y. Chen and M. Elshakankiri
+• University: University of Regina
+• Relation: Proposes an IoT edge-based pet monitoring system using
+Raspberry Pi and AWS; focuses on latency improvement, not feed
+accuracy relates to my review by demonstrating MQTT-based IoT control
+and showing lack of closed-loop reliability.
+• Where found: IEEE Xplore
+(Chen & Elshakankiri, 2020)
+
+4
+• Results
+
+The system demonstrated low-latency control under edge processing
+(~50–80 ms average response). The authors reported successful remote
+video streaming and feeding activation. Quantitative metrics focused on
+network delay and throughput but not feeding accuracy. The solution
+showed that edge-assisted IoT can reduce delay compared to pure cloud
+architecture. However, no testing of portion precision or device autonomy
+was performed.
+• Limitations
+
+Hardware cost was high due to Raspberry Pi and AWS use. The system
+depends on constant Internet availability; no offline operation or recovery
+logic exists. Security measures were limited to AWS credentials and did
+not cover end-to-end device authentication or auditing. The architecture
+is general pet care, not specialized in precise feeding. Data persistence
+and multi-user roles were not addressed. Furthermore, the design did not
+measure real-world feed outcome against desired target values.
+
+5
+2.3. IoT and Cloud-based Automated Pet Care System
+• Name of the paper: IoT and Cloud-based Automated Pet Care System
+• Type of paper: Journal article (IEEE Access / digital proceedings)
+• Authors: M. Rajani Devi, V. Jyothi, and D. Nagajyoti
+• University: Jawaharlal Nehru Technological University, Hyderabad,
+India
+• Relation: Describes a cloud-connected feeding and watering system
+controlled by Blynk and ThingSpeak; demonstrates successful scheduling
+but lacks mass verification, supports my argument for integrating closedloop sensing and offline capability.
+• Where found: IEEE Xplore
+(Devi, et al., 2022)
+• Results
+
+The device worked reliably for remote commands through the Blynk
+interface and maintained connectivity with the ThingSpeak cloud. The
+authors reported successful data upload of feed events and pet presence
+detection. However, quantitative results such as error percentage of food
+dispensed or latency values were not included. The results are thus
+functional verifications rather than statistical analysis.
+
+6
+• Limitations
+
+Key limitations include lack of closed-loop feedback, no weight
+verification, and dependency on external cloud servers for core
+functionality. Offline operation fails if Wi-Fi disconnects. Data is visible only
+to the account holder; no multi-user role support exists. Security and data
+integrity are not discussed. The architecture is single-point of failure with
+limited fault recovery.
+
+2.4. Modular Pet Feeding Device
+• Name of the paper: Modular Pet Feeding Device
+• Type of paper: Student project research report / institutional publication
+• Authors: V. C. M., P. Rao, S. Kiran, and A. Fernandes
+• University: Dayananda Sagar College of Engineering, Bengaluru, India
+• Relation: Focuses on hardware modularity of feeders without
+networking or analytics; forms the mechanical foundation that my FYP
+builds upon by adding IoT feedback, web dashboards, and authentication.
+• Where found: Google Scholar
+(M., et al., 2023)
+• Results
+
+Testing showed that the device could dispense food consistently when
+manually triggered. Measurements of portion uniformity were limited to
+visual inspection. The authors reported “accurate dispensing” qualitatively
+but did not provide numeric error data or sensor readings. The device ran
+on a 12 V DC supply and could operate autonomously without a network.
+
+7
+• Limitations
+
+The system lacks any smart functionality or communication layer. It cannot
+be remotely controlled or monitored, nor store historical feed records.
+Sensor precision is insufficient for accurate mass measurement. Without
+a backend or app, multi-user interaction and auditing are impossible. The
+authors did not address security, calibration, or human-in-loop features
+
+2.5. Automatic Pet Feed System Applying IoT
+•
+
+Name of the paper: Automatic Pet Feed System Applying IoT
+
+• Type of paper: Journal article (Modelling, Measurement and
+Control D)
+• Pages: 87–93
+• Authors: A. V. C. Rangel, I. U. Ponce, and I. Soto
+• University: Instituto de Ingenieria y Tecnologia
+• Relation: Presents an IoT feeder with HX711 sensor and
+ThingSpeak cloud logging; lacks feedback control or authentication,
+directly aligns with my review focus on transforming one-way data
+collection into verifiable closed-loop systems.
+• Where found: Measurement and Control D (International Journal)
+(Rangel, et al., 2024)
+
+8
+• Results
+
+The prototype achieved stable network connectivity and successfully
+recorded feed data on ThingSpeak. The authors confirmed accurate
+logging of feeding instances and real-time updates. However, they omitted
+quantitative accuracy measures, no error analysis between intended and
+actual dispensed mass or timing variance. Testing was limited to short
+demonstrations under stable Wi-Fi conditions.
+
+• Limitations
+
+Major weaknesses include lack of closed-loop verification, total
+dependence on connectivity, and unaddressed security. The system
+cannot adapt to motor variation or grain density differences. Blynk and
+ThingSpeak impose external dependency and poor scalability. There is no
+human oversight, error recovery, or multi-user model.
+
+9
+2.6. IoT Based Automatic Pet Feeder
+• Name of the paper: IoT Based Automatic Pet Feeder
+• Type of paper: Journal article (International Journal of Scientific
+Research in Science, Engineering and Technology – IJSRSET)
+• Pages: 570–577
+• Authors: R. Robert, C.Jerisha, S.Mable Vimala, N.S. Nanthini, and
+T.Saranya
+• University: Annai Vailankanni College of Engineering
+• Relations: Demonstrates timed servo control for feeding through Blynk
+with no verification or data persistence; serves as an early open-loop
+reference, highlighting why my FYP’s feedback and audit systems are
+necessary.
+• Where found: IJSRSET (Volume 9, Issue 8)
+(R.Robert, et al., 2021)
+• Results
+
+Functional testing verified that feeding actions occurred at scheduled
+times, with reported sub-second response to mobile commands. The
+system demonstrated consistent motor rotation but lacked numeric
+validation of portion consistency. The authors documented photos of
+successful feeding as qualitative evidence.
+
+10
+• Limitations
+
+This system cannot adjust or verify dispensed amounts, has no fault
+tolerance, and depends entirely on Internet access. There are no
+authentication or audit mechanisms. Calibration, measurement, and user
+control granularity are minimal. Offline operation, analytics, or multicaregiver control are absent.
+
+11
+2.7. Design and Development of a Smart Pet Feeder with IoT and
+Deep Learning
+• Name of the paper: Design and Development of a Smart Pet Feeder
+with IoT and Deep Learning
+• Type of paper: Conference paper (MDPI Proceedings of 8th
+International Electronic Conference on Sensors and Applications)
+• Authors: Oscar E. Castillo-Arceo, Ricardo U. Ruiz Flores, and Patricia
+C. Santana Mancilla
+• University: Universidad de Colima, Mexico
+• Relation: Integrates IoT hardware with YOLOv5-based pet recognition;
+strong AI use but lacks multi-user control or audit trail, supports my
+argument for extending smart feeders into secure, transparent IoT
+ecosystems.
+• Where found: MDPI Proceedings
+(Castillo-Arceo, et al., 2024)
+• Results
+
+The authors achieved functional pet recognition and portion dispensing
+aligned to pet identity. They claimed accurate pet differentiation and stable
+HX711 readings. However, they omitted numerical accuracy or timing
+results. Performance metrics such as detection confidence or feed error
+were absent.
+
+12
+• Limitations
+
+Despite AI integration, the feeder operated as a self-contained device with
+no authenticated cloud control or multi-user oversight. There was no audit
+log or notification mechanism. Dependence on environmental lighting
+could reduce detection reliability. Offline behaviour, data reconciliation,
+and user verification were untested.
+
+2.8. Overall Gap Analysis
+• Common Gaps:
+
+o Absence of closed-loop control: Only two works mention load
+cells, and neither performs continuous feedback correction or
+quantitative evaluation of mass error.
+o Lack of security and auditability: Every reviewed system
+except Castillo-Arceo et al. operates without authentication,
+encryption, or verified logs. Firebase or Blynk connections
+dominate, offering convenience but no durable record integrity.
+o Network dependency: Offline resilience is universally absent.
+Systems fail entirely without Wi-Fi, indicating no local autonomy
+or synchronization strategy.
+o Single-user limitation: None support multi-caregiver models or
+role-based access. Pet management remains isolated to a single
+mobile user.
+o No human-in-the-loop verification: Automation occurs blindly
+with no acknowledgment, override, or feedback channel.
+
+13
+
+3. Proposed System
+3.1. Concept Overview
+The conceptual framework envisions an IoT system composed of
+interlinked hardware, firmware, and software modules operating in a
+closed-loop configuration. At its core, an ESP32 microcontroller
+interfaces with an HX711 load cell amplifier and servo motor to
+dispense precise feed portions. Data communication occurs through a
+hybrid model of local control and cloud synchronization, allowing the
+system to function offline and reconcile data when reconnected. The web
+application serves as the supervisory layer, hosting multi-user access,
+analytics, and audit logging.
+(Conceptual Architecture Diagram Placeholder)
+
+3.2. System Architecture and Module Interactions
+3.2.1. ESP32 Control Unit
+The ESP32 serves as the central processing and communication hub,
+managing sensor input, actuator control, and network communication
+(Whitepaper, 2024). It continuously reads load cell data via the HX711
+ADC and applies a feedback algorithm to maintain target feed mass.
+When network connectivity is unavailable, data is cached locally in flash
+memory and queued for transmission upon reconnection.
+3.2.2. HX711 Load Cell Amplifier
+The HX711 measures the real-time weight of dispensed feed with high
+precision. By embedding this sensor into a feedback loop, the system
+monitors the actual mass dispensed and terminates feeding once the
+desired threshold is reached (Team, 2024) Calibration coefficients are
+stored in non-volatile memory, ensuring repeatable accuracy.
+
+14
+3.2.3. Servo Motor Dispensing Module
+The servo controls a gate mechanism that regulates pellet flow. The
+ESP32 modulates servo angle in response to HX711 readings. This
+constitutes a proportional feedback mechanism where dispensing
+continues until the error between target and actual weight approaches
+zero (Staff, 2025).
+3.2.4. IoT Communication and Cloud Integration
+The system employs either MQTT or RESTful HTTP for data transmission.
+MQTT
+
+provides
+
+asynchronous,
+
+low-overhead
+
+updates
+
+ideal
+
+for
+
+constrained IoT devices, while REST API offers transactional reliability for
+audit events (Rahman, 2024). A cloud backend—integrated per best
+practices for resilient IoT architecture (Team, 2025) stores feeding logs,
+calibration parameters, and user actions.
+3.2.5. Web Application and Multi-Caregiver Control
+The web app, developed using a modern frontend framework (e.g., React
+or Next.js), interacts through secure APIs. Authentication follows
+lightweight, mutual verification protocols suitable for IoT ecosystems
+(Shehu, et al., 2025). Role-based access control allows multiple
+caregivers to manage schedules collaboratively while preserving
+accountability. Event logging adheres to principles outlined in (Team,
+2025) ensuring immutability and traceability of all interactions.
+3.2.6. Offline Synchronization and Analytics
+During network loss, feeding records and control events are timestamped
+locally. Upon reconnection, the device compares local and server logs,
+resolving conflicts using idempotent tokens to prevent duplication.
+Analytics modules in the web app visualize feeding frequency, average
+portion mass, and deviation trends, following practices from (Team, 2025).
+
+15
+3.3. Security, Audit, and Human Oversight
+Authentication, encryption, and event logging form the trust backbone.
+Following guidance from (Team, 2023) and (Wu, et al., 2020) the system
+employs HTTPS with token-based session validation. All feed events are
+auditable and reversible by authorized users. Notification mechanisms
+alert caregivers of anomalies or feeding completion, ensuring human-inloop supervision.
+
+4. Technology Overview
+4.1. HX711 Load Cell Amplifier
+The HX711 is a 24-bit analog-to-digital converter optimized for weight
+sensing. It amplifies microvolt-level signals from the load cell, enabling
+detection of minute mass variations. In this system, it provides real-time
+feedback for the dispensing servo, forming the foundation of the closedloop control algorithm (Team, 2024).
+4.2. Servo Motor
+A micro servo motor translates control signals from the ESP32 into
+mechanical movement for the feeding gate. Pulse-width modulation
+(PWM) defines its angular position. When paired with the HX711
+feedback, the servo dynamically adjusts to maintain dispensing accuracy
+within a predefined tolerance band (Staff, 2025).
+4.3. ESP32 Microcontroller
+The ESP32, with integrated Wi-Fi and dual-core processor, handles
+sensor readings, feedback calculations, and network communications
+concurrently. Its embedded flash storage enables offline data caching and
+synchronization on reconnection (Whitepaper, 2024).
+
+16
+4.4. MQTT vs HTTP REST Communication
+MQTT supports lightweight, bidirectional communication suitable for realtime IoT telemetry, whereas REST ensures structured, authenticated
+requests (Rahman, 2024) . This system proposes MQTT for live feed-state
+updates and REST for log synchronization and user transactions.
+4.5. Cloud Integration
+Cloud services maintain a persistent data layer, following principles from
+(Team, 2025). The architecture leverages serverless APIs for device
+communication and NoSQL storage for rapid feed log queries.
+4.6. Web Application and Logging Mechanisms
+A React-based dashboard interfaces with backend APIs for control and
+visualization. It implements detailed logging-login attempts, schedule
+modifications, and feed completions, based on the design guidelines in
+(Team, 2023) and (Team, 2025).
+4.7. IoT Security and Authentication
+The project employs mutual authentication and token-based validation to
+protect device-cloud sessions (Title: "Authentication Schemes for Internet
+of Things (IoT) Networks"). All communication uses HTTPS with certificate
+pinning
+
+and
+
+salted
+
+hash
+
+storage
+
+for
+
+credentials,
+
+adhering
+
+to
+
+recommendations in (Wu, et al., 2020).
+4.8. Analytics and Visualization
+Data analytics modules use aggregated feed data to compute average
+portion accuracy, caregiver activity frequency, and trend analysis.
+Visualization dashboards follow frameworks described in (Team, 2025).
+
+17
+
+5. Research Gap and Motivation
+Existing smart pet feeders demonstrate limited technical maturity. Most
+operate under open-loop control, dispensing food for fixed durations
+without verifying actual output mass. This results in inconsistent feeding
+and potential overfeeding issues particularly critical for diet-sensitive
+animals. While prior designs such as those surveyed in (Company, 2025),
+indicate increasing automation, they largely prioritize convenience over
+accuracy or transparency.
+Connectivity dependence poses further risks. Feeders relying exclusively
+on continuous Wi-Fi cannot operate during network disruptions, leaving
+pets unfed. Existing systems rarely implement offline caching or
+synchronization models (team & Oliynyk, 2024). Consequently, IoT-based
+pet feeders remain vulnerable to both communication failures and data
+inconsistency.
+From a systems perspective, these gaps represent deficiencies in
+feedback control, data governance, and operational resilience. The
+proposed project directly addresses these through:
+• Closed-loop feedback control for verified portion accuracy using
+HX711 mass readings.
+• Secure, multi-caregiver web platform supporting authenticated
+roles and auditable logs (Team, 2025)
+• Offline-first synchronization ensuring functional continuity under
+network loss (Team, 2025)
+• Integrated analytics dashboard offering measurable performance
+feedback and feeding trends (Team, 2025).
+
+18
+
+6. Conclusion
+This research review established a conceptual framework for a nextgeneration IoT-enabled smart pet feeder emphasizing precision, security,
+and collaborative management. The system architecture integrates a
+closed-loop feedback mechanism, an authenticated multi-caregiver web
+platform, and an analytics-driven control layer.
+Compared to existing feeders that rely on static timing and single-user
+mobile control, this conceptual system embodies a holistic approach,
+linking embedded hardware intelligence with secure cloud orchestration.
+The integration of the HX711-based feedback control introduces
+quantitative reliability, while the offline-first synchronization model
+addresses real-world connectivity constraints.
+The project’s long-term vision extends toward intelligent behavioral
+analytics and adaptive feeding through AI integration (M., et al., 2023).
+
+19
+
+7. References
+•
+
+Castillo-Arceo, O. E., Flores, R. U. R. & Santana Mancilla, P. C.,
+2024. Design and Development of a Smart Pet Feeder with IoT and
+Deep Learning. s.l., MDPI.
+
+• Chen, Y. & Elshakankiri, M., 2020. Implementation of an IoT Based
+Pet Care System. s.l., IEEE.
+
+• Company, T. B. R., 2025. Global Automatic and Smart Pet Feeder
+Market Report 2025, London: The Business Research Company.
+
+• Devi, M. R., Jyothi, V. & Nagajyoti, D., 2022. IoT and Cloud-based
+Automated Pet Care System. s.l., IEEE.
+
+• Jain, E. et al., 2023. Design of Smart Pet Food Dispenser using
+Embedded System. Pune, IEEE, pp. 1-6.
+
+• M., V. C. et al., 2023. Modular Pet Feeding Device. Bengaluru, n/a.
+
+20
+• R.Robert, et al., 2021. IoT Based Automatic Pet Feeder.
+International Journal of Scientific Research in Science, Engineering
+and Technology (IJSRSET), 9(8), pp. 570-577.
+
+• Rahman, M., 2024. The Battle Between MQTT and HTTP REST API
+in IoT System. s.l., LinkedIn Articles.
+
+• Rangel, A. V. C., Ponce, I. U. & Soto, I., 2024. Automatic Pet Feed
+System Applying IoT. Modelling, Measurement and Control D, 45(14), pp. 87-93.
+
+• Shehu, J., Bin, M. H., Mahmood, S. & Tang, J. L., 2025.
+Authentication schemes for Internet of Things (IoT) networks: A
+systematic review and security assessment. Internet of Things,
+Volume 30, pp. 101-469.
+
+• Staff, T. a. M. W. E., 2025. Feedback vs. Feedforward Control: A
+Detailed Comparison. s.l., Test and Measurement World.
+
+21
+• Team, A. E., 2023. The Importance of Security Logging in Protecting
+Your Web Apps. s.l., AppSec Engineer.
+
+• Team, P. B. S. E., 2024. Intelligent Loss-in-Weight Closed Loop Rate
+Control. s.l., Powder Bulk Solids.
+
+• Team, P. B. S. E., 2024. Intelligent Loss-in-Weight Closed Loop Rate
+Control, s.l.: Powder Bulk Solids (online).
+
+• Team, P. P. E., 2025. Designing Audit Trails Architecturally. s.l.,
+Palos Publishing.
+
+• Team, T. C. T., 2025. Seamless Cloud Services Integration in IoT
+Embedded Systems. Al Barsha, TechAhead Corp.
+
+• Team, W. B. E., 2025. Exploring IoT Data Visualization, Analytics
+and Data Storage. s.l., Watsoo Technologies.
+
+22
+• team, W. e. & Oliynyk, K., 2024. From Layers to Components: IoT
+Architecture
+Available
+
+Explained.
+at:
+
+[Online]
+
+https://www.webbylab.com/blog/iot-architecture/
+
+[Accessed 05 November 2025].
+
+• Whitepaper, C., 2024. Overview of Embedded IoT Systems and
+Their Applications, s.l.: Industry publication.
+
+• Wu, H.-L.et al., 2020. A Secure IoT-Based Authentication System in
+Cloud Computing Environment. Sensors (Basel), 20(19), pp. 56045618.
+
+
