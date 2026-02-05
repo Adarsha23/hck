@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pet Feeder - SRS Tracker (Subsystem-Based)</title>
+    <style>
+        :root {
+            --bg-page: #f9f9f9;
+            --bg-header: #f2f2f2;
+            --text-main: #333;
+            --border-color: #ddd;
+            --accent-black: #000;
+            --sub-row-bg: #fff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            margin: 40px auto;
+            max-width: 1400px;
+            padding: 0 40px;
+            line-height: 1.5;
+        }
+
+        header {
+            background: #fff;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            border-top: 5px solid #000;
+        }
+
+        h1 {
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 1.8em;
+            letter-spacing: 1px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        #global-progress {
+            font-size: 2em;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .subsystem-header {
+            background: #000;
+            color: #fff;
+            padding: 15px 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 60px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        th {
+            background: var(--bg-header);
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-group {
+            background: #fdfdfd;
+            cursor: pointer;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-group td {
+            padding: 15px;
+        }
+
+        .nested-row {
+            display: none;
+        }
+
+        .nested-row.visible {
+            display: table-row;
+        }
+
+        .sub-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sub-table td {
+            padding: 10px 15px 10px 50px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+        }
+
+        .id-cell { font-family: monospace; font-weight: bold; color: #888; width: 60px; }
+        .type-badge {
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-transform: uppercase;
+            background: #fff;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        select {
+            width: 140px;
+            padding: 6px;
+            font-size: 0.8em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .status-0 { color: #999; }
+        .status-1 { color: #555; font-weight: bold; border-left: 3px solid #888; }
+        .status-2 { color: #000; font-weight: bold; border-left: 3px solid #000; }
+
+        .progress-box { display: flex; align-items: center; gap: 12px; }
+        .group-percent { width: 45px; text-align: right; font-weight: 700; }
+        .progress-bar { flex-grow: 1; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #000; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .toggle-icon { font-family: monospace; display: inline-block; width: 30px; transition: 0.2s; font-size: 1.2em; }
+        .expanded .toggle-icon { transform: rotate(90deg); }
+        
+        .type-func { color: #000; }
+        .type-nfr { color: #666; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Smart Pet Feeder - Subsystem Requirements Tracking</h1>
+        <div class="stats">
+            <div>Requirements Analyzed: <strong>128</strong></div>
+            <div>|</div>
+            <div>Overall Completion: <span id="global-progress">0%</span></div>
+        </div>
+    </header>
+
+    <!-- SUBSYSTEM 1 -->
+    <div class="subsystem-header">I. SUBSYSTEM 1: USER & PET MANAGEMENT</div>
+    <table>
+        <thead>
+            <tr> <th width="60%">Feature & Detailed Requirement</th> <th width="15%">Type</th> <th width="25%">Implementation Status</th> </tr>
+        </thead>
+        <tbody>
+            <!-- Feature: Auth -->
+            <tr class="feature-group" onclick="toggle(this, 's1-auth')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S1.F1] User Authentication & Security</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s1-auth" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR1.1</span> Account registration (Email/PW)</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR1.2</span> Automated email verification service</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR1.3</span> Mandatory verification guard</td><td><span class="type-badge">Security</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR1.4</span> Verified login access control</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR1.5</span> Secure password reset workflow</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0" selected>Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR1.6</span> Profile metadata management</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0" selected>Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR1.7</span> Secure logout / JWT invalidation</td><td><span class="type-badge">Security</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+            </table></td></tr>
+
+            <!-- Feature: Pet Profile -->
+            <tr class="feature-group" onclick="toggle(this, 's1-pet')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S1.F2] Pet Profile Management</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s1-pet" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR2.1</span> Create multi-pet profiles</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR2.2</span> Store Bio-data (Breed, Age, Weight)</td><td><span class="type-badge">Data</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR2.3</span> Cloud storage for pet photography</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR2.4</span> Edit pet profile attributes</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR2.5</span> Secure pet profile deletion</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR2.6</span> Pet detail visualization dashboard</td><td><span class="type-badge">Usability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+            </table></td></tr>
+        </tbody>
+    </table>
+
+    <!-- SUBSYSTEM 2 -->
+    <div class="subsystem-header">II. SUBSYSTEM 2: FEEDING, MONITORING & ANALYTICS</div>
+    <table>
+        <thead>
+            <tr> <th width="60%">Feature & Detailed Requirement</th> <th width="15%">Type</th> <th width="25%">Implementation Status</th> </tr>
+        </thead>
+        <tbody>
+            <!-- Feature: Operations -->
+            <tr class="feature-group" onclick="toggle(this, 's2-ops')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S2.F4] Feeding Operations & Scheduler</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s2-ops" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR4.1</span> Trigger immediate manual dispense</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR4.2</span> Precise gram amount selection (0–500g)</td><td><span class="type-badge">Constraint</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR4.3</span> Recurring cron-based feeding cycles</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR4.4</span> Edit existing feeding schedules</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR4.6</span> Offline command queue (Supabase/Rest)</td><td><span class="type-badge">Reliability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR4.8</span> Real-time dispense monitor</td><td><span class="type-badge">Realtime</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR4.9</span> Target vs Actual weight discrepancy log</td><td><span class="type-badge">Data</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+
+            <!-- Feature: Closed Loop (CORE) -->
+            <tr class="feature-group" onclick="toggle(this, 's2-loop')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S2.F5] Closed-Loop Control System (Core)</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s2-loop" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR5.1</span> Continuous weight feedback monitoring</td><td><span class="type-badge">Core FYP</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR5.2</span> Dynamic motor cutoff at target threshold</td><td><span class="type-badge">Core FYP</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR5.4</span> ±5% Precision tolerance validation</td><td><span class="type-badge">Core FYP</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR5.5</span> Critical failure alarm (>10% deviation)</td><td><span class="type-badge">Core FYP</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR5.7</span> Accurate gram-reporting to database</td><td><span class="type-badge">Core FYP</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+
+            <!-- Feature: Analytics -->
+            <tr class="feature-group" onclick="toggle(this, 's2-anal')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S2.F6] Monitoring & Data Analytics</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s2-anal" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR6.1</span> Live Food Level monitoring</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR6.2</span> Live Water Level monitoring</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR6.3</span> Daily Dispense summary reports</td><td><span class="type-badge">Analytical</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR6.5</span> Success rate & average volume metrics</td><td><span class="type-badge">Analytical</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR6.6</span> Data Export (PDF/CSV)</td><td><span class="type-badge">Usability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR6.7</span> Detailed anomaly visualization</td><td><span class="type-badge">Analytical</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR6.8</span> Configurable low-stock alert thresholds</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+        </tbody>
+    </table>
+
+    <!-- SUBSYSTEM 3 -->
+    <div class="subsystem-header">III. SUBSYSTEM 3: IOT, CONNECTIVITY & NOTIFICATIONS</div>
+    <table>
+        <thead>
+            <tr> <th width="60%">Feature & Detailed Requirement</th> <th width="15%">Type</th> <th width="25%">Implementation Status</th> </tr>
+        </thead>
+        <tbody>
+            <!-- Device Management -->
+            <tr class="feature-group" onclick="toggle(this, 's3-dev')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S3.F3] Device Management & Pairing</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s3-dev" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR3.1</span> Pairing flow (SN + Unique Code)</td><td><span class="type-badge">Security</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR3.4</span> Real-time ONLINE/OFFLINE status ping</td><td><span class="type-badge">Reliability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR3.6</span> Multi-user shared device access</td><td><span class="type-badge">Scalable</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR3.8</span> Over-cloud load cell calibration</td><td><span class="type-badge">Hardware</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR3.10</span> Firmware version logging</td><td><span class="type-badge">Maintain</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+
+            <!-- Notifications -->
+            <tr class="feature-group" onclick="toggle(this, 's3-notif')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S3.F7] Multi-Channel Notification System</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s3-notif" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR7.1</span> Notification: Dispense Completion</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR7.2</span> Notification: Critical Feed Failure</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR7.3</span> Low Food Stock Warning</td><td><span class="type-badge">Func</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR7.5</span> Device Connectivity Change Alerts</td><td><span class="type-badge">Reliability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR7.8</span> Subscription preference management</td><td><span class="type-badge">Usability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+
+            <!-- IoT Ops -->
+            <tr class="feature-group" onclick="toggle(this, 's3-iot')">
+                <td colspan="2"><span class="toggle-icon">▶</span> [S3.F8] IoT Polling & Real-time Operations</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="s3-iot" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">FR8.1</span> Dynamic polling interval (10–30s)</td><td><span class="type-badge">Perf</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR8.4</span> Quad-sensor telemetry (F/W/T/H)</td><td><span class="type-badge">Hardware</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">FR8.8</span> State Transition: PENDING → EXECUTED</td><td><span class="type-badge">Tech</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+        </tbody>
+    </table>
+
+    <!-- SYSTEM QUALITY -->
+    <div class="subsystem-header">IV. SYSTEM QUALITY & GLOBAL SPECIFICATIONS</div>
+    <table>
+        <thead>
+            <tr> <th width="60%">Requirement Description</th> <th width="15%">Type</th> <th width="25%">Implementation Status</th> </tr>
+        </thead>
+        <tbody>
+            <tr class="feature-group" onclick="toggle(this, 'sys-nfr')">
+                <td colspan="2"><span class="toggle-icon">▶</span> Non-Functional & QoS Requirements</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="sys-nfr" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">NFR1.1</span> sub-2s UI latency baseline</td><td><span class="type-badge">Perf</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">NFR2.1</span> 99.9% Core API Availability</td><td><span class="type-badge">Reliability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">NFR3.2</span> TLS 1.3 / HTTPS Data-in-transit Ency</td><td><span class="type-badge">Security</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">NFR3.3</span> DB level Row-Level Security (RLS)</td><td><span class="type-badge">Security</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">NFR4.5</span> Mobile-first responsive UI parity</td><td><span class="type-badge">Usability</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+
+            <tr class="feature-group" onclick="toggle(this, 'sys-const')">
+                <td colspan="2"><span class="toggle-icon">▶</span> System Constraints & Interfaces</td>
+                <td><div class="progress-box"><span class="group-percent">0%</span><div class="progress-bar"><div class="progress-fill"></div></div></div></td>
+            </tr>
+            <tr id="sys-const" class="nested-row"> <td colspan="3"><table class="sub-table">
+                <tr><td><span class="id-cell">C1.1</span> Stack: React 19 / Supabase Core</td><td><span class="type-badge">Constraint</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2" selected>Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">C1.3</span> Hardware: ESP32 / Servo PWM control</td><td><span class="type-badge">Constraint</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">DBR1.1</span> Schema: Multi-tenant UUID architecture</td><td><span class="type-badge">Data</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+                <tr><td><span class="id-cell">DBR2.1</span> Logic: Automated trigger propagation</td><td><span class="type-badge">Data</span></td><td><select onchange="recalc()"><option value="0">Incomplete</option><option value="1">In Progress</option><option value="2">Completed</option></select></td></tr>
+            </table></td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function toggle(row, id) {
+            const nested = document.getElementById(id);
+            const isVisible = nested.classList.contains('visible');
+            nested.classList.toggle('visible', !isVisible);
+            row.classList.toggle('expanded', !isVisible);
+        }
+
+        function recalc() {
+            const groups = document.querySelectorAll('.nested-row');
+            let globalTotal = 0;
+            let globalMax = 0;
+
+            groups.forEach(group => {
+                const selects = group.querySelectorAll('select');
+                let score = 0;
+                let max = selects.length * 2;
+
+                selects.forEach(s => {
+                    const val = parseInt(s.value);
+                    score += val;
+                    s.className = 'status-' + val;
+                });
+
+                const percent = max > 0 ? Math.round((score / max) * 100) : 0;
+                const hRow = group.previousElementSibling;
+                hRow.querySelector('.group-percent').innerText = percent + '%';
+                hRow.querySelector('.progress-fill').style.width = percent + '%';
+
+                globalTotal += score;
+                globalMaxScore = 0; // Reset for global check
+                globalMax += max;
+            });
+
+            const totalPercent = globalMax > 0 ? Math.round((globalTotal / globalMax) * 100) : 0;
+            document.getElementById('global-progress').innerText = totalPercent + '%';
+        }
+
+        window.onload = recalc;
+    </script>
+</body>
+</html>
